@@ -1,0 +1,41 @@
+N. Instance,Solution Status,Height,Time
+1,Optimal,8,0.002
+2,Optimal,9,0.006
+3,Optimal,10,0.005
+4,Optimal,11,0.014
+5,Optimal,12,0.101
+6,Optimal,13,0.051
+7,Optimal,14,0.096
+8,Optimal,15,0.265
+9,Optimal,16,0.2476
+10,Optimal,17,0.8914
+11,Optimal,18,5.3685
+12,Optimal,19,0.8118
+13,Optimal,20,3.5668
+14,Optimal,21,6.0511
+15,Optimal,22,6.0154
+16,No solution found, ,300.0529
+17,Optimal,24,19.7138
+18,Optimal,25,77.9061
+19,No solution found, ,300.049
+20,No solution found, ,300.046
+21,No solution found, ,300.0749
+22,No solution found, ,300.1284
+23,Optimal,30,136.6707
+24,Optimal,31,7.214
+25,No solution found, ,300.1184
+26,Optimal,33,54.2653
+27,Optimal,34,178.156
+28,Optimal,35,22.9547
+29,No solution found, ,300.0815
+30,No solution found, ,300.0959
+31,Optimal,38,24.7102
+32,No solution found, ,300.0821
+33,Optimal,40,4.2548
+34,No solution found, ,300.115
+35,Optimal,40,81.1159
+36,Optimal,40,55.8823
+37,No solution found, ,300.1869
+38,No solution found, ,300.1321
+39,No solution found, ,300.1003
+40,No solution found, ,300.3967
