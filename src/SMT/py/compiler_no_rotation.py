@@ -126,7 +126,7 @@ if __name__ == "__main__":
 
             optimizer = ()
             plate, n_circuits, x, y = import_file(instance)
-            height_min = max(max(y), plate)
+            height_min = min(y)
             if int(sum(y) / 2) <= max(y):
                 height_max = sum(y)
             else:

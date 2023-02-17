@@ -13,7 +13,7 @@ def model_mip(plate, n_circuits, x, y):
     # Create the 'prob' variable to contain the problem data
     prob = LpProblem("vlsi", LpMinimize)
     # Height min
-    height_min = max(max(y), plate)
+    height_min = min(y)
     # If there's a block higher than the sum of the heights divided by two
     if int(sum(y)/2) <= max(y):
         height_max = sum(y)
@@ -82,7 +82,7 @@ def model_mip_rotation(plate, n_circuits, x, y):
     # Create the 'prob' variable to contain the problem data
     prob = LpProblem("vlsi_rot", LpMinimize)
     # Height min
-    height_min = max(max(y), plate)
+    height_min = min(y)
     # If there's a block higher than the sum of the heights divided by two
     if int(sum(y) / 2) <= max(y):
         height_max = sum(y)

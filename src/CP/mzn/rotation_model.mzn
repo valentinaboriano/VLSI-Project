@@ -9,7 +9,7 @@ array[1..n_circuits, 1..2] of int: circuits;
 array[1..n_circuits] of int: x=[circuits[i,1]| i in 1..n_circuits];
 array[1..n_circuits] of int: y=[circuits[i,2]|i in 1..n_circuits];
 
-int: height_min =  max(plate, max(y));
+int: height_min =  min(y);
 int: height_max = ceil(sum(y)/2);
 
 var height_min..height_max: height;
@@ -40,31 +40,22 @@ constraint cumulative(coord_y, rot_y, rot_x, plate);
 constraint cumulative(coord_x, rot_x, rot_y, height);
 
 %% SYMMETRY BREAKING %%
-
-%symm breaking on x axis
-predicate symm_breaking_x() =
+%symmetry breaking on axes
+predicate symm_breaking_axes() =
       let {
-           array[1..n_circuits] of var int: x_sim=[if coord_x[i]!= 0 then plate - coord_x[i] else 0 endif| i in 1..n_circuits];
-           }
-in lex_lesseq(coord_x, x_sim) /\ lex_lesseq(coord_y, reverse(coord_y));
+            array[1..n_circuits] of var int: x_sim = [plate - coord_x[i] - rot_x[i] | i in 1..n_circuits];
+            array[1..n_circuits] of var int: y_sim = [height - coord_y[i] - rot_y[i] | i in 1..n_circuits]
+      } in lex_lesseq(coord_x, x_sim) /\ lex_lesseq(coord_y, y_sim);
 
-%symm breaking on y axis
-predicate symm_breaking_y() =
-            let {
-           array[1..n_circuits] of var int: y_sim=[if coord_y[i]!= 0 then height - coord_y[i] else 0 endif| i in 1..n_circuits];
-           }
-in lex_lesseq(coord_y, y_sim) /\ lex_lesseq(coord_x, reverse(coord_x));
-
-%symm breaking for circuits of same height annd width
+%symmetry breaking for circuits of same height and width
 predicate symm_breaking_same_circuits() =
    forall(i, j in 1..n_circuits where i<j)(
-     if rot_x[i]==rot_x[j] /\ rot_y[i]==rot_y[j]
+     if x[i]==x[j] /\ y[i]==y[j]
      then lex_lesseq([coord_x[i], coord_y[i]], [coord_x[j], coord_y[j]])
      endif
    );
 
-constraint symm_breaking_same_circuits()  /\ symm_breaking_x() /\ symm_breaking_y();
-
+constraint symm_breaking_same_circuits()  /\ symm_breaking_axes();
 
 %% SEARCH %%
 solve :: seq_search([
